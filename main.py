@@ -16,3 +16,4 @@ if __name__ == '__main__':
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
 # 너아러ㅏㅣ무자ㅣ더라ㅣㅓ자ㅣㄷ리ㅏ마지디라
+# 어ㅣ러미ㅏㅓㅈ다ㅣ라ㅣ멎다ㅣㄹ
