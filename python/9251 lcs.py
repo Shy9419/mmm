@@ -1,21 +1,16 @@
 import sys
-S1 = sys.stdin.readline().strip()
-S2 = sys.stdin.readline().strip()
-len1 = len(S1)
-len2 = len(S2)
-matrix = [[0] * (len2 + 1) for _ in range(len1 + 1)]
+input = sys.stdin.readline
 
-for i in range(1, len1 + 1):
-    for j in range(1, len2 + 1):
-        if S1[i - 1] == S2[j - 1]:
-            matrix[i][j] = matrix[i - 1][j - 1] + 1
+string_A = [0] + list(input().rstrip())     # 문자열 입력값을 받는다.
+string_B = [0] + list(input().rstrip())
+
+dp = [[0] * len(string_B) for _ in range(len(string_A))]    # dp를 초기화한다.
+
+for i in range(1, len(string_A)):   # 2차원 배열을 반복
+    for j in range(1, len(string_B)):
+        if string_A[i] == string_B[j]:  # 만약 같다면
+            dp[i][j] =dp[i-1][j-1]+ 1   # 2차원 배열에 1을 더해서 표시
         else:
-            matrix[i][j] = max(matrix[i - 1][j], matrix[i][j - 1])
-print(matrix[-1][-1])
+            dp[i][j] = max(dp[i][j-1], dp[i-1][j])  # 그렇지 않다면(다르다면) 그 순간까지의 최대값을 가져옴.
 
-# if i == 0 or j == 0:    # 마진 설정
-#     LCS[i][j] = 0
-# elif string_A[i] == string_B[j]:
-#     LCS[i][j] = LCS[i - 1][j - 1] + 1   # 두 문자가 같다면 LCS[i - 1][j - 1] 값을 찾아 + 1 한다.
-# else:
-#     LCS[i][j] = max(LCS[i - 1][j], LCS[i][j - 1])   # 두 문자가 다르다면 LCS[i - 1][j], LCS[i][j - 1] 중에 큰 값을 표시한다.
+print(dp[len(string_A) - 1][len(string_B) - 1])
